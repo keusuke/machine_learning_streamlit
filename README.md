@@ -40,17 +40,57 @@ streamlit run app.py
    - データプレビュー：データの概要とプレビュー
    - 自動分析：統計量、欠損値、相関、分布、外れ値の分析結果
 
+## テスト
+
+テストの実行：
+```bash
+python run_tests.py
+```
+
+テストカバレッジレポートの確認：
+```bash
+pytest tests/ -v --cov=src --cov-report=html
+# HTMLレポートは htmlcov/index.html で確認可能
+```
+
 ## プロジェクト構造
 
 ```
 machine_learning_streamlit/
-├── app.py                 # メインアプリケーション
-├── requirements.txt       # 依存パッケージ
-├── run.sh                # 起動スクリプト
-└── src/
-    ├── components/
-    │   ├── data_loader.py    # データ読み込み機能
-    │   └── data_analyzer.py  # データ分析機能
-    └── utils/
-        └── config.py         # 設定ファイル
+├── app.py                    # メインアプリケーション
+├── requirements.txt          # 依存パッケージ
+├── run.sh                   # 起動スクリプト
+├── run_tests.py             # テスト実行スクリプト
+├── test_report.html         # テスト結果レポート
+├── src/                     # ソースコード
+│   ├── components/
+│   │   ├── data_loader.py   # データ読み込み機能
+│   │   └── data_analyzer.py # データ分析機能
+│   └── utils/
+│       └── config.py        # 設定ファイル
+└── tests/                   # テストコード
+    ├── test_data_loader.py  # データ読み込み機能のテスト
+    └── test_data_analyzer.py # データ分析機能のテスト
 ```
+
+## 技術スタック
+
+- **フレームワーク**: Streamlit 1.29.0
+- **データ処理**: pandas 2.1.4, numpy 1.26.2
+- **可視化**: matplotlib 3.8.2, seaborn 0.13.0, plotly 5.18.0
+- **統計処理**: scipy 1.11.4
+- **テスト**: pytest 7.4.3, pytest-cov 4.1.0
+
+## 開発手法
+
+本プロジェクトはテスト駆動開発（TDD）で実装されています：
+1. 要件に基づいてテストを先に作成
+2. テストを満たす最小限の実装を行う
+3. リファクタリングで品質を向上
+
+## 今後の拡張予定
+
+- データ前処理機能（2.1.3）
+- 可視化機能の拡充（2.1.4）
+- 機械学習モデル構築機能（2.2）
+- モデル評価機能（2.3）
